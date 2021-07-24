@@ -214,6 +214,18 @@ let timer;
 // updateUI(currentAccount);
 // containerApp.style.opacity = 100;
 
+//Function called on log out/time out
+const logOut = function () {
+  clearInterval(timer);
+  labelWelcome.textContent = `Log in to get started`;
+  containerApp.style.opacity = 0;
+  loginDetails.classList.remove('hidden');
+  //Display Login form
+  loginForm.classList.remove('hidden');
+  //Hide Logout btn
+  btnLogout.classList.add('hidden');
+};
+
 //================SETTING TIMER FOR AUTO LOG-OUT====================
 const startLogOutTimer = function () {
   const tick = function () {
@@ -224,10 +236,7 @@ const startLogOutTimer = function () {
 
     // When 0 seconds, stop timer and log out
     if (time === 0) {
-      clearInterval(timer);
-      labelWelcome.textContent = `Log in to get started`;
-      containerApp.style.opacity = 0;
-      loginDetails.classList.remove('hidden');
+      logOut();
     }
     // Decrease 1sec
     time--;
@@ -305,13 +314,7 @@ btnLogin.addEventListener('click', function (event) {
 // =============Logging Out ==================
 btnLogout.addEventListener('click', function (e) {
   e.preventDefault;
-  containerApp.style.opacity = 0;
-  //Dippla available accounts
-  loginDetails.classList.remove('hidden');
-  //Display Login form
-  loginForm.classList.remove('hidden');
-  //Hide Logout btn
-  btnLogout.classList.add('hidden');
+  logOut();
 });
 
 // ============= TRANSFERING MONEY================
