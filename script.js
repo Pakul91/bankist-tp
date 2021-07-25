@@ -258,7 +258,7 @@ btnLogin.addEventListener('click', function (event) {
   //prevent the form from submitting
   event.preventDefault();
   currentAccount = accounts.find(
-    acc => acc.userName === inputLoginUsername.value
+    acc => acc.userName === inputLoginUsername.value.toLowerCase()
   );
 
   // Checking if current account exist (using optional chaining). If true: checking if provided PIN is in line with the pin inside the object
